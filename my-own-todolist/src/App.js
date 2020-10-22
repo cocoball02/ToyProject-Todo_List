@@ -12,21 +12,43 @@ class App extends Component {
   };
 
   //입력창이 바뀔때마다 동작하는 함수.
-  handleChange = () => {};
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
 
   //state - todoText 바꾸는 함수.
-  todoChange = () => {};
+  todoCreate = () => {
+    this.setState({
+      todoList: this.state.todoList.concat({
+        text: this.state.todoText,
+        id: this.index++,
+      }),
+    });
+    this.setState({
+      todoText: '',
+    });
+  };
 
   //state - todo 삭제하는 함수
-  todoRemove = () => {};
+  todoRemove = id => {
+    this.setState({
+      todoList: this.state.todoList.filter(el => el.id !== id),
+    });
+  };
 
   render() {
-    const { todoText, categoryName } = this.state;
-    const { handleChange, todoChange, todoRemove } = this;
+    const { todoText, todoList, categoryName } = this.state;
+    const { handleChange, todoCreate, todoRemove } = this;
     return (
       <div>
-        <TodoForm />
-        <TodoList />
+        <TodoForm
+          text={todoText}
+          handleChange={handleChange}
+          todoCreate={todoCreate}
+        />
+        <TodoList todoList={todoList} todoRemove={todoRemove} />
       </div>
     );
   }
