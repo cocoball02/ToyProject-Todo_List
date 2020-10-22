@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
+import CategoryList from './components/CategoryList';
 
 class App extends Component {
   index = 0;
@@ -38,11 +39,27 @@ class App extends Component {
     });
   };
 
+  //method - todo update기능.
+  //버튼을 누르면 input창으로 바뀐다.
+  //저장 버튼을 누르면 이전 값과 현재 값을 비교해서
+  //동일하면 그대로, 다르면 수정한다.
+  todoUpdate = id => {
+    this.state.todoList.forEach(el => {
+      if (el.id === id) {
+      }
+    });
+  };
+
   render() {
-    const { todoText, todoList, categoryName } = this.state;
+    const { todoText, todoList, categoryName, categoryList } = this.state;
     const { handleChange, todoCreate, todoRemove } = this;
     return (
       <div>
+        <CategoryList
+          handleChange={handleChange}
+          categoryList={categoryList}
+          categoryName={categoryName}
+        />
         <TodoForm
           text={todoText}
           handleChange={handleChange}

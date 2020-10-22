@@ -17,7 +17,9 @@ class TodoForm extends Component {
           onClick={() => {
             todoCreate();
           }}
-        ></button>
+        >
+          추가
+        </button>
       </div>
     );
   }
