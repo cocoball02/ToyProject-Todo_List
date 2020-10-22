@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import TodoForm from './components/TodoForm';
+import TodoList from './components/TodoList';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  index = 0;
+  state = {
+    todoText: '',
+    todoList: [],
+    categoryName: '',
+    categoryList: [],
+  };
+
+  //입력창이 바뀔때마다 동작하는 함수.
+  handleChange = () => {};
+
+  //state - todoText 바꾸는 함수.
+  todoChange = () => {};
+
+  //state - todo 삭제하는 함수
+  todoRemove = () => {};
+
+  render() {
+    const { todoText, categoryName } = this.state;
+    const { handleChange, todoChange, todoRemove } = this;
+    return (
+      <div>
+        <TodoForm />
+        <TodoList />
+      </div>
+    );
+  }
 }
 
 export default App;
